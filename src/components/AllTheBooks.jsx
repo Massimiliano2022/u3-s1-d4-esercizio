@@ -9,9 +9,9 @@ import scifi from '../books/scifi.json';
 
 const allBooks = [...fantasy, ...history, ...horror, ...romance, ...scifi];
 
-const getRandomBooks = () => {
+const getRandomBooks = (num) => {
     const randomBooks = [];
-    while (randomBooks.length < 24) {
+    while (randomBooks.length < num) {
         const randomIndex = Math.floor(Math.random() * allBooks.length);
         const randomBook = allBooks[randomIndex];
         if (!randomBooks.includes(randomBook)) {
@@ -24,7 +24,7 @@ const getRandomBooks = () => {
 class AllTheBooks extends Component {
     state = {
         selectedBook: null,
-        booksToShow: getRandomBooks()
+        booksToShow: getRandomBooks(24)
     };
     render() {
         return (
@@ -35,7 +35,7 @@ class AllTheBooks extends Component {
                         <Col md={4}
                             key={`book-${index}`}
                             onClick={() => {
-                                console.log("abbiamo cliccato: " + book.title);
+                                console.log("Book: " + book.title);
                                 this.setState({ selectedBook: book });
                             }}
                         >
